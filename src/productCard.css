@@ -1,0 +1,18 @@
+.product_card {
+  width: 20vw;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 10vw;
+}
+
+.product_card img {
+  width: 100%;
+  backface-visibility: hidden;
+}
+.product_card h3 {
+}
+
+.product-grid {
+}

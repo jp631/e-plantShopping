@@ -9,6 +9,7 @@ function ProductList({ onHomeClick }) {
   const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
   const dispatch = useDispatch();
   const [addedToCart, setAddedToCart] = useState({});
+  const cart = useSelector((state) => state.cart.items);
 
   const plantsArray = [
     {
@@ -273,6 +274,14 @@ function ProductList({ onHomeClick }) {
     textDecoration: "none",
   };
 
+  const getCartquantity = () => {
+    let qty = 0;
+    cart.forEach((e) => {
+      qty += e.quantity;
+    });
+
+    return qty;
+  };
   const handleHomeClick = (e) => {
     e.preventDefault();
     onHomeClick();
@@ -322,14 +331,20 @@ function ProductList({ onHomeClick }) {
         <div style={styleObjUl}>
           <div>
             {" "}
-            <a href="#" onClick={(e) => handlePlantsClick(e)} style={styleA}>
-              Plants
+            <a
+              href="#"
+              id="see plant"
+              onClick={(e) => handlePlantsClick(e)}
+              style={styleA}
+            >
+              See Plants
             </a>
           </div>
           <div>
             {" "}
             <a href="#" onClick={(e) => handleCartClick(e)} style={styleA}>
               <h1 className="cart">
+                <p className="number_on_card">{getCartquantity()}</p>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 256 256"
@@ -366,7 +381,7 @@ function ProductList({ onHomeClick }) {
                 {" "}
                 {/* Unique key for each category div */}
                 <h1>
-                  <div>{category.category}</div>{" "}
+                  <div className="category">{category.category}</div>{" "}
                   {/* Display the category name */}
                 </h1>
                 <div className="product-list">
